@@ -1,0 +1,42 @@
+[project]
+name = "aioshutdown"
+version = "0.0.1"
+description = "Context manager that provides simple graceful shutdown interface for your asyncio tasks."
+requires-python = ">=3.8"
+authors = [
+  { name="Ali Aliyev", email="ali@aliev.me" },
+]
+readme = "README.md"
+keywords = ["asyncio", "graceful", "shutdown"]
+classifiers = ['Development Status :: 5 - Production/Stable',
+               'Intended Audience :: Developers',
+               'Programming Language :: Python',
+               'License :: OSI Approved :: MIT License',
+               'Natural Language :: English',
+               'Operating System :: OS Independent',
+               'Programming Language :: Python',
+               'Programming Language :: Python :: 3',
+               'Programming Language :: Python :: 3.8',
+               'Programming Language :: Python :: 3.9',
+               'Programming Language :: Python :: 3.10',
+               'Framework :: AsyncIO',
+               'Topic :: Software Development :: Libraries :: Python Modules',
+               'Topic :: Utilities']
+
+[tool.setuptools]
+packages = ["aioshutdown"]
+
+[project.urls]
+"Homepage" = "https://github.com/aliev/aioshutdown"
+"Bug Tracker" = "https://github.com/aliev/aioshutdown/issues"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+warn_no_return = false
+disallow_untyped_defs = false
+allow_redefinition = true
+
+[tool.flake8]
+max-line-length = 120
