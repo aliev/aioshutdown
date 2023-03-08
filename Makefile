@@ -65,3 +65,4 @@ dev-install: clean ## install the package and test dependencies for local develo
 	pip install pytest
 	pip install pytest-cov
 	pip install -e .
+	pre-commit install
