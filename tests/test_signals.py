@@ -1,7 +1,8 @@
 import asyncio
-from multiprocessing import Process, Pipe, connection
-from aioshutdown import SIGINT, SIGTERM, SIGHUP
 from enum import Enum, auto
+from multiprocessing import Pipe, Process, connection
+
+from aioshutdown import SIGHUP, SIGINT, SIGTERM
 
 
 class TaskStatus(Enum):
@@ -27,7 +28,7 @@ def worker(conn: connection.Connection):
 def test_run_worker():
     conn1, conn2 = Pipe()
 
-    p = Process(target=worker, args=(conn1, ))
+    p = Process(target=worker, args=(conn1,))
     p.start()
 
     counter = 0
