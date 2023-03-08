@@ -62,4 +62,6 @@ dev-install: clean ## install the package and test dependencies for local develo
 	pip install wheel
 	pip install twine
 	pip install build
+	pip install pytest
+	pip install pytest-cov
 	pip install -e .
