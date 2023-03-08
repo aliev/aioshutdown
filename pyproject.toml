@@ -22,6 +22,9 @@ classifiers = ['Development Status :: 5 - Production/Stable',
                'Framework :: AsyncIO',
                'Topic :: Software Development :: Libraries :: Python Modules',
                'Topic :: Utilities']
+dependencies = [
+  "typing_extensions"
+]
 
 [tool.setuptools]
 packages = ["aioshutdown"]
@@ -40,3 +43,6 @@ allow_redefinition = true
 
 [tool.flake8]
 max-line-length = 120
+
+[tool.pytest.ini_options]
+addopts = "-s --strict-markers -vv --cache-clear --maxfail=1 --cov=aioshutdown --cov-report=term --cov-report=html --cov-branch --no-cov-on-fail"

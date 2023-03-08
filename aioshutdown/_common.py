@@ -2,21 +2,27 @@ import asyncio
 import sys
 from contextlib import AbstractContextManager
 from signal import Signals
-from typing import List
+from typing import Set
 
 from ._shutdown import shutdown
 from ._types import HandlerType
 
-if sys.version_info >= (3, 11):
+if sys.version_info >= (3, 11):  # pragma: nocover
     from typing import Self
-else:
+else:  # pragma: nocover
     from typing_extensions import Self
 
 
 class Signal(AbstractContextManager):
     def __init__(self, signal: Signals) -> None:
         self.signal: Signals = signal
-        self._signals: List[Signals] = []
+        self._signals: Set[Signals] = set()
+
+    def __repr__(self) -> str:
+        return repr(self.signal)
+
+    def __str__(self) -> str:
+        return str(self.signal)
 
     def add_signal_handler(
         self,
@@ -28,15 +34,15 @@ class Signal(AbstractContextManager):
         )
 
     def __or__(self, other: Self):
-        other._signals.append(self.signal)
+        other._signals.add(self.signal)
 
         for _signal in self._signals:
-            other._signals.append(_signal)
+            other._signals.add(_signal)
 
         return other
 
     def __enter__(self) -> asyncio.AbstractEventLoop:
-        self._signals.append(self.signal)
+        self._signals.add(self.signal)
 
         self.loop = asyncio.events.new_event_loop()
 
