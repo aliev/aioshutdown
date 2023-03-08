@@ -22,6 +22,9 @@ classifiers = ['Development Status :: 5 - Production/Stable',
                'Framework :: AsyncIO',
                'Topic :: Software Development :: Libraries :: Python Modules',
                'Topic :: Utilities']
+dependencies = [
+  "typing_extensions"
+]
 
 [tool.setuptools]
 packages = ["aioshutdown"]
