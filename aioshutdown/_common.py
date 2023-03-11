@@ -39,6 +39,8 @@ class Signal(AbstractContextManager):
         for _signal in self._signals:
             other._signals.add(_signal)
 
+        self._signals.clear()
+
         return other
 
     def __enter__(self) -> asyncio.AbstractEventLoop:
@@ -52,4 +54,5 @@ class Signal(AbstractContextManager):
         return self.loop
 
     def __exit__(self, exc_type, exc_value, traceback):
+        self._signals.clear()
         self.loop.close()
