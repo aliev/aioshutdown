@@ -1,6 +1,6 @@
 [project]
 name = "aioshutdown"
-version = "0.0.1"
+version = "0.0.2"
 description = "Context manager that provides simple graceful shutdown interface for your asyncio tasks."
 requires-python = ">=3.8"
 authors = [
