@@ -58,11 +58,5 @@ dist: clean ## builds source and wheel package
 
 dev-install: clean ## install the package and test dependencies for local development
 	python -m pip install --upgrade pip
-	pip install pre-commit
-	pip install wheel
-	pip install twine
-	pip install build
-	pip install pytest
-	pip install pytest-cov
-	pip install -e .
+	pip install -e ."[dev]"
 	pre-commit install

@@ -26,6 +26,16 @@ dependencies = [
   "typing_extensions"
 ]
 
+[project.optional-dependencies]
+dev = [
+  "pre-commit",
+  "wheel",
+  "twine",
+  "build",
+  "pytest",
+  "pytest-cov"
+]
+
 [tool.setuptools]
 packages = ["aioshutdown"]
 
