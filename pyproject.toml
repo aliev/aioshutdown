@@ -33,7 +33,10 @@ dev = [
   "twine",
   "build",
   "pytest",
-  "pytest-cov"
+  "pytest-cov",
+  "mypy",
+  "flake8",
+  "flake8-pyproject"
 ]
 
 [tool.setuptools]
