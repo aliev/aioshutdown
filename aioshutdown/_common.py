@@ -29,9 +29,8 @@ class Signal(AbstractContextManager):
         handler: HandlerType,
         signal: Signals,
     ) -> None:
-        self.loop.add_signal_handler(
-            signal, lambda s=signal: asyncio.create_task(handler(self.loop, s))
-        )
+        f = lambda s=signal: asyncio.create_task(handler(self.loop, s))
+        self.loop.add_signal_handler(signal, f)
 
     def __or__(self, other: Self):
         other._signals.add(self.signal)

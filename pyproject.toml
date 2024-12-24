@@ -59,6 +59,7 @@ allow_redefinition = true
 
 [tool.flake8]
 max-line-length = 120
+ignore = ["E731"]
 
 [tool.pytest.ini_options]
 addopts = "-s --strict-markers -vv --cache-clear --maxfail=1 --cov=aioshutdown --cov-report=term --cov-report=html --cov-branch --no-cov-on-fail"
