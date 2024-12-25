@@ -29,14 +29,19 @@ async def shutdown(loop: asyncio.AbstractEventLoop, signal: Signals) -> None:
         if t is not asyncio.current_task(loop=loop)
     ]
 
-    # Request for cancellation of all outstanding tasks.
-    for task in tasks:
-        cancel(task, signal)
-
     logger.info("Cancelling %d outstanding tasks", len(tasks))
 
-    # Concurrently wait for all tasks to be cancelled.
-    await asyncio.gather(*tasks, return_exceptions=True)
+    # Request for cancellation of all outstanding tasks.
+    for task in tasks:
+        logger.info("Cancelling task: %s", task)
+        cancel(task, signal)
+
+        try:
+            await task
+        except asyncio.CancelledError as exc:
+            logger.info("Task %s cancelled with args: %s", task, exc.args)
+        except Exception:
+            logger.exception("Error while cancelling task %s", task)
 
     logger.info("Stopping event loop")
 
